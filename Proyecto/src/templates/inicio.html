@@ -1,0 +1,74 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-md-5">
+
+        {% with messages = get_flashed_messages()  %}
+        {% if messages %}
+        {% for msg in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <p> {{msg}}</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <div class="card card-body">
+            <form action="/add_user", method="post">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <div class="form-group">
+                    <input type="text" name="codigo" placeholder="Email" class="form-control"> 
+                </div>
+                <div class="form-group">
+                    <input type="text" name="nombre" placeholder="Password" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="correo" placeholder="Fullname" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="perfil" placeholder="Rol" class="form-control">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">ADD</button> 
+                </div>                
+                
+            </form>
+        </div>
+
+    </div>
+
+    <div class="col-md-7">
+        <table class="table table-striped table-bordered bg-white table-sm">
+            <thead>
+                <tr>
+                    <td>Email</td>
+                    <td>Password</td>
+                    <td>Fullname</td>
+                    <td>Rol</td>
+                    <td>Acciones</td>                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in usuarios %}
+                <tr>
+                    <td> {{ c.1 }} </td>
+                    <td> **** </td>
+                    <td> {{ c.3 }} </td>
+                    <td> {{ c.4 }} </td>                    
+                    <td> 
+                        <a href="/edit_user/{{ c.0 }}" class="btn btn-secondary">Edit</a>
+                        <a href="/delete_user/{{ c.0 }}" class="btn btn-danger btn-delete">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        
+        </table>
+    </div>
+</div>
+{% endblock %}

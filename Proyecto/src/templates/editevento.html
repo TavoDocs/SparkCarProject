@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<h1>EDIT</h1>
+
+<div class="col-md-4 offset-md-4">
+
+    <div class="card card-body">
+
+        <form action = "/updateevento/{{evento.0}}", method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <div class="form-group">
+                <!-- <label for="codigo">Titulo</label> -->
+                <input type="text" class="form-control" name="titulo" value="{{evento.1}}">
+                <small id="emailHelp" class="form-text text-muted">Titulo</small>
+            </div>
+            <div class="form-group">
+                <!-- <label for="descripcion">Fecha</label> -->
+                <input type="text" class="form-control" name="fecha" value="{{evento.2}}">
+                <small id="emailHelp" class="form-text text-muted">Fecha</small>
+            </div>
+            <div class="form-group">
+                <!-- <label for="precio">Espacios</label> -->
+                <input type="text" class="form-control" name="espacios" value="{{evento.3}}">
+                <small id="emailHelp" class="form-text text-muted">Espacios</small>
+            </div>
+            <div class="form-group">
+                <!-- <label for="stock">Descripcion</label> -->
+                <input type="text" class="form-control" name="descripcion" value="{{evento.4}}">
+                <small id="emailHelp" class="form-text text-muted">Descripcion</small>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success btn-block">Save</button>      
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

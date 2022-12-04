@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<h1>EDIT</h1>
+
+<div class="col-md-4 offset-md-4">
+
+    <div class="card card-body">
+
+        <form action = "/update_user/{{usuario.0}}", method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <div class="form-group">
+                <!-- <label for="codigo">Codigo</label> -->
+                <input type="text" class="form-control" name="email" value="{{usuario.1}}">
+                <small id="emailHelp" class="form-text text-muted">Email</small>
+            </div>
+            <div class="form-group">
+                <!-- <label for="nombre">Nombre</label> -->
+                <input type="text" class="form-control" name="password" value="">
+                <small id="emailHelp" class="form-text text-muted">Password</small>
+            </div>
+            <div class="form-group">
+                <!-- <label for="correo">Correo</label> -->
+                <input type="text" class="form-control" name="fullname" value="{{usuario.3}}">
+                <small id="emailHelp" class="form-text text-muted">Fullname</small>
+            </div>
+            <div class="form-group">
+                <!-- <label for="perfil">Perfil</label> -->
+                <input type="text" class="form-control" name="rol" value="{{usuario.4}}">
+                <small id="emailHelp" class="form-text text-muted">Rol</small>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success btn-block">Save</button>      
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
